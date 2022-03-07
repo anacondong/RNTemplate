@@ -5,9 +5,9 @@ import {
   View,
   Text,
   SafeAreaView,
+  Alert,
 } from 'react-native';
 import {
-  Header,
   DebugInstructions,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
@@ -26,7 +26,7 @@ import {changeTheme} from '~/redux/actions/ThemeActions';
 import {AppDispatch} from '~/redux/stores';
 import {changeLanguage} from '~/redux/actions/LanguageActions';
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation: { navigate } }) => {
   // Redux
   const dispatch: AppDispatch = useAppDispatch();
   const reduxState = useAppSelector(state => ({
@@ -45,7 +45,6 @@ const HomeScreen = () => {
         contentContainerStyle={{
           paddingBottom: BOTTOM_SAFE_AREA_HEIGHT,
         }}>
-        <Header />
 
         <View
           style={[
@@ -155,9 +154,30 @@ const HomeScreen = () => {
                 TH
               </Text>
             </TouchableOpacity>
+
           </View>
+
+              <Text onPress={() =>
+                  navigate('LoginScreen', { params: ['LoginScreen'] })}>Login</Text>
+              <Text onPress={() =>
+                  navigate('LottoScreen', { params: ['LottoScreen'] })}>Lotto</Text>
+              <Text onPress={() =>
+                  navigate('MatchScreen', { params: ['MatchScreen'] })}>Match</Text>
+              <Text onPress={() =>
+                  navigate('NewsScreen', { params: ['NewsScreen'] })}>News</Text>
+              <Text onPress={() =>
+                  navigate('NotMatchScreen', { params: ['NotMatchScreen'] })}>NotMatch</Text>
+              <Text onPress={() =>
+                  navigate('ProfileScreen', { params: ['ProfileScreen'] })}>Profile</Text>
+              <Text onPress={() =>
+                  navigate('ScanScreen', { params: ['ScanScreen'] })}>Scan</Text>
+
         </View>
+        
+
+
       </ScrollView>
+
     </SafeAreaView>
   );
 };
