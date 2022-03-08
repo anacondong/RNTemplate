@@ -157,8 +157,7 @@ const HomeScreen = ({ navigation: { navigate } }) => {
 
           </View>
 
-              <Text onPress={() =>
-                  navigate('LoginScreen', { params: ['LoginScreen'] })}>Login</Text>
+              
               <Text onPress={() =>
                   navigate('LottoScreen', { params: ['LottoScreen'] })}>Lotto</Text>
               <Text onPress={() =>
