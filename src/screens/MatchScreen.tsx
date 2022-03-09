@@ -14,7 +14,7 @@ import {useAppSelector} from '~/hooks/useAppSelector';
 import {useAppDispatch} from '~/hooks/useAppDispatch';
 import {AppDispatch} from '~/redux/stores';
 
-const MatchScreen = () => {
+const MatchScreen = ({ navigation: { navigate } }) => {
   // Redux
   const dispatch: AppDispatch = useAppDispatch();
   const reduxState = useAppSelector(state => ({

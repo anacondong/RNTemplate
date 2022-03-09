@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import LoadingScreen from '~screens/LoadingScreen';
 import HomeScreen from '~screens/HomeScreen';
 import LoginScreen from '~screens/LoginScreen';
@@ -34,8 +34,32 @@ const AppNavigator = () => {
   };
 
   const auth = true; // TODO impl Login
-  //https://reactnavigation.org/docs/hiding-tabbar-in-screens/
 
+  const LottoStack = () => {
+    return (
+      <Stack.Navigator>
+        <Stack.Screen name="LottoScreen" component={LottoScreen} />
+        <Stack.Screen name="ScanScreen" component={ScanScreen} />
+        <Stack.Screen name="HomeScreen" component={HomeScreen} />
+        <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
+      </Stack.Navigator>
+    );
+  }
+  const MatchStack = () => {
+    return (
+      <Stack.Navigator>
+        <Stack.Screen name="MatchScreen" component={MatchScreen} />
+        <Stack.Screen name="NotMatchScreen" component={NotMatchScreen} />
+      </Stack.Navigator>
+    );
+  }
+  const NewsStack = () =>{
+    return (
+      <Stack.Navigator>
+        <Stack.Screen name="NewsScreen" component={NewsScreen} />
+      </Stack.Navigator>
+    );
+  }
 
   return (
     <NavigationContainer>
@@ -50,15 +74,33 @@ const AppNavigator = () => {
         </Stack.Navigator>
         ) 
         : (
-        <Tab.Navigator>
-          <Tab.Screen name="HomeScreen" component={HomeScreen} />
-          <Tab.Screen name="LottoScreen" component={LottoScreen} />
-          <Tab.Screen name="MatchScreen" component={MatchScreen} />
-          <Tab.Screen name="NotMatchScreen" component={NotMatchScreen} />
-          <Tab.Screen name="NewsScreen" component={NewsScreen} />
-          <Tab.Screen name="ProfileScreen" component={ProfileScreen} />
-          <Tab.Screen name="ScanScreen" component={ScanScreen} />
-        </Tab.Navigator>
+          <Tab.Navigator initialRouteName="Lotto"
+          tabBarOptions={{
+            activeTintColor: '#e91e63',
+          }}
+    >
+            <Tab.Screen name="Lotto" component={LottoStack} 
+            options={{
+              tabBarLabel: 'Lotto',
+              tabBarIcon: ({ color, size }) => (
+                <MaterialCommunityIcons name="barcode" color={color} size={size} />
+              ),
+            }}/>
+            <Tab.Screen name="Match" component={MatchStack} 
+            options={{
+              tabBarLabel: 'Match',
+              tabBarIcon: ({ color, size }) => (
+                <MaterialCommunityIcons name="menu" color={color} size={size} />
+              ),
+            }}/>
+            <Tab.Screen name="News" component={NewsStack} 
+            options={{
+              tabBarLabel: 'News',
+              tabBarIcon: ({ color, size }) => (
+                <MaterialCommunityIcons name="filmstrip-box-multiple" color={color} size={size} />
+              ),
+            }}/>
+          </Tab.Navigator>
         )}
     </NavigationContainer>
   );

@@ -14,7 +14,7 @@ import {useAppSelector} from '~/hooks/useAppSelector';
 import {useAppDispatch} from '~/hooks/useAppDispatch';
 import {AppDispatch} from '~/redux/stores';
 
-const LottoScreen = () => {
+const LottoScreen = ({ navigation: { navigate } }) => {
   // Redux
   const dispatch: AppDispatch = useAppDispatch();
   const reduxState = useAppSelector(state => ({
@@ -41,6 +41,21 @@ const LottoScreen = () => {
             Lotto Screen
           </Text>
           
+        </View>
+
+        <View>
+        <Text onPress={() =>
+                  navigate('LottoScreen', { params: ['LottoScreen'] })}>Lotto</Text>
+              <Text onPress={() =>
+                  navigate('MatchScreen', { params: ['MatchScreen'] })}>Match</Text>
+              <Text onPress={() =>
+                  navigate('NewsScreen', { params: ['NewsScreen'] })}>News</Text>
+              <Text onPress={() =>
+                  navigate('NotMatchScreen', { params: ['NotMatchScreen'] })}>NotMatch</Text>
+              <Text onPress={() =>
+                  navigate('ProfileScreen', { params: ['ProfileScreen'] })}>Profile</Text>
+              <Text onPress={() =>
+                  navigate('ScanScreen', { params: ['ScanScreen'] })}>Scan</Text>
         </View>
       </ScrollView>
     </SafeAreaView>

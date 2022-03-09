@@ -14,7 +14,7 @@ import {useAppSelector} from '~/hooks/useAppSelector';
 import {useAppDispatch} from '~/hooks/useAppDispatch';
 import {AppDispatch} from '~/redux/stores';
 
-const LoginScreen = () => {
+const LoginScreen = ({ navigation: { navigate } }) => {
   // Redux
   const dispatch: AppDispatch = useAppDispatch();
   const reduxState = useAppSelector(state => ({
@@ -40,8 +40,8 @@ const LoginScreen = () => {
           <Text style={[styles.typography.h2, {color: colors.text}]}>
             Login Screen
           </Text>
-          
-        </View>
+        
+          </View>
       </ScrollView>
     </SafeAreaView>
   );

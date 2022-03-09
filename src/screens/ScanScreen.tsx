@@ -14,7 +14,7 @@ import {useAppSelector} from '~/hooks/useAppSelector';
 import {useAppDispatch} from '~/hooks/useAppDispatch';
 import {AppDispatch} from '~/redux/stores';
 
-const ScanScreen = () => {
+const ScanScreen  = ({ navigation: { navigate } }) => {
   // Redux
   const dispatch: AppDispatch = useAppDispatch();
   const reduxState = useAppSelector(state => ({
