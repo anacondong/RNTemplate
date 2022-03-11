@@ -1,14 +1,15 @@
 import React from 'react';
 import {
-  ScrollView,
+  Image,
   View,
   Text,
+  StatusBar,
   SafeAreaView,
-} from 'react-native';
+  TouchableOpacity,
+  TextInput,
+} from "react-native";
 
-import {BOTTOM_SAFE_AREA_HEIGHT} from '~utils/Constants';
-
-import styles from '~styles/';
+import styles from "./LoginScreen.style";
 
 import {useAppSelector} from '~/hooks/useAppSelector';
 import {useAppDispatch} from '~/hooks/useAppDispatch';
@@ -24,25 +25,44 @@ const LoginScreen = ({ navigation: { navigate } }) => {
 
   const {colors} = reduxState.theme;
 
-  return (
-    <SafeAreaView style={[styles.flex, {backgroundColor: colors.primary}]}>
-      <ScrollView
-        contentContainerStyle={{
-          paddingBottom: BOTTOM_SAFE_AREA_HEIGHT,
-        }}>
+  const Logo = () => (
+    <Image
+      resizeMode="contain"
+      source={require("~/assets/local-asserts/apple.png")}
+      style={[styles.logoImageStyle]}
+    />
+  );
 
-        <View
-          style={[
-            styles.flex,
-            styles.container,
-            {backgroundColor: colors.primary},
-          ]}>
-          <Text style={[styles.typography.h2, {color: colors.text}]}>
-            Login Screen
-          </Text>
-        
-          </View>
-      </ScrollView>
+  const TextInputContainer = () => (
+    <View style={[styles.textInputContainer]}>
+      <TextInput placeholder="username"/>
+      <View style={styles.passwordTextInputContainer}>
+        <TextInput
+          placeholder="password"
+          secureTextEntry
+        />
+      </View>
+    </View>
+  );
+
+
+  const LoginButton = () => (
+    <TouchableOpacity
+      style={[styles.loginButtonStyle]}
+      onPress={() => {navigate('NewsScreen', { params: ['NewsScreen'] })}}
+    >
+      <Text style={[styles.loginTextStyle]}>Login</Text>
+    </TouchableOpacity>
+  );
+
+  const Divider = () => <View style={[styles.dividerStyle]} />;
+
+  return (
+    <SafeAreaView style={[styles.container,]}>
+      <StatusBar barStyle="dark-content" />
+      <Logo />
+      <TextInputContainer />
+      <LoginButton />
     </SafeAreaView>
   );
 };
