@@ -33,7 +33,7 @@ const AppNavigator = () => {
     );
   };
 
-  const auth = true; // TODO impl Login
+  const auth = false; // TODO impl Login
 
   const LottoStack = () => {
     return (

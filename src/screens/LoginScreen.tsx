@@ -7,8 +7,10 @@ import {
   SafeAreaView,
   TouchableOpacity,
   TextInput,
+  Alert,
 } from "react-native";
 
+import stylesMain from '~styles/';
 import styles from "./LoginScreen.style";
 
 import {useAppSelector} from '~/hooks/useAppSelector';
@@ -28,16 +30,17 @@ const LoginScreen = ({ navigation: { navigate } }) => {
   const Logo = () => (
     <Image
       resizeMode="contain"
-      source={require("~/assets/local-asserts/apple.png")}
+      source={require("~/assets/local-assets/apple.png")}
       style={[styles.logoImageStyle]}
     />
   );
 
   const TextInputContainer = () => (
     <View style={[styles.textInputContainer]}>
-      <TextInput placeholder="username"/>
+      <TextInput placeholder="username" onChangeText={() =>{}}/>
       <View style={styles.passwordTextInputContainer}>
         <TextInput
+          onChangeText={() =>{}}
           placeholder="password"
           secureTextEntry
         />
@@ -49,7 +52,7 @@ const LoginScreen = ({ navigation: { navigate } }) => {
   const LoginButton = () => (
     <TouchableOpacity
       style={[styles.loginButtonStyle]}
-      onPress={() => {navigate('NewsScreen', { params: ['NewsScreen'] })}}
+      onPress={() => {console.log("set Auth == true")}}
     >
       <Text style={[styles.loginTextStyle]}>Login</Text>
     </TouchableOpacity>
@@ -58,10 +61,12 @@ const LoginScreen = ({ navigation: { navigate } }) => {
   const Divider = () => <View style={[styles.dividerStyle]} />;
 
   return (
-    <SafeAreaView style={[styles.container,]}>
-      <StatusBar barStyle="dark-content" />
+    <SafeAreaView style={[stylesMain.flex, {backgroundColor: colors.primary}]}>
+      
       <Logo />
+      <Divider />
       <TextInputContainer />
+      <Divider />
       <LoginButton />
     </SafeAreaView>
   );

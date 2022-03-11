@@ -35,7 +35,7 @@ export default StyleSheet.create<Style>({
     alignSelf: "center",
   },
   textInputContainer: {
-    marginTop: 12,
+    marginTop: 20,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -75,12 +75,7 @@ export default StyleSheet.create<Style>({
   },
   dividerStyle: {
     height: 0.5,
-    marginTop: 24,
-    marginBottom: 12,
-    borderRadius: 16,
-    width: ScreenWidth * 0.8,
     alignSelf: "center",
-    backgroundColor: "#ccc",
   },
   socialLoginContainer: {
     marginTop: 16,
