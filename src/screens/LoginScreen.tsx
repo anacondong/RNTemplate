@@ -3,11 +3,9 @@ import {
   Image,
   View,
   Text,
-  StatusBar,
   SafeAreaView,
   TouchableOpacity,
   TextInput,
-  Alert,
 } from "react-native";
 
 import stylesMain from '~/styles/';
@@ -16,8 +14,7 @@ import styles from "~/styles/LoginScreen.style";
 import {useAppSelector} from '~/hooks/useAppSelector';
 import {useAppDispatch} from '~/hooks/useAppDispatch';
 import {AppDispatch} from '~/redux/stores';
-import { UserActionTypes } from '~/redux/types/UserTypes';
-
+import * as userActions from '~/redux/actions/UserActions'
 const LoginScreen = ({ navigation: { navigate } }) => {
   // Redux
   const dispatch: AppDispatch = useAppDispatch();
@@ -54,11 +51,7 @@ const LoginScreen = ({ navigation: { navigate } }) => {
     <TouchableOpacity
       style={[styles.loginButtonStyle]}
       onPress={() => {
-          console.log("set Auth == true")
-          dispatch({
-            type: UserActionTypes.LOG_IN,
-            payload: {username: "test", password: "test"}
-          })
+          dispatch(userActions.feedUSER())
         }
       }
     >

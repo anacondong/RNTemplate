@@ -15,6 +15,7 @@ import ScanScreen from '~screens/ScanScreen';
 import {useAppDispatch} from '~/hooks/useAppDispatch';
 import {initLanguage} from '~/redux/actions/LanguageActions';
 import {initTheme} from '~/redux/actions/ThemeActions';
+import { useAppSelector } from '~/hooks/useAppSelector';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -33,7 +34,13 @@ const AppNavigator = () => {
     );
   };
 
-  const auth = false; // TODO impl Login
+  const reduxState = useAppSelector(state => ({
+    user: state.user,
+  }));
+
+  const { isAuth } = reduxState.user;
+
+  const auth = isAuth; // TODO impl Login
 
   const LottoStack = () => {
     return (

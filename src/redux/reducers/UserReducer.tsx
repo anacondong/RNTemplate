@@ -1,29 +1,31 @@
+import { USER_FAILED, USER_FETCHING, USER_SUCCESS } from "../Constants";
 import {AnyAction} from 'redux';
-import {UserActionTypes} from '../types/UserTypes';
 
-const INITIAL_STATE = { 
-  user: null,
-  auth: false,
-  error: null,
+export interface UserfeedState {
+    result: any,
+    isFetching: boolean,
+    isError: boolean
+    isAuth: boolean
 }
 
-export default (state = INITIAL_STATE, action: AnyAction) => {
-  console.log('action', action);
-  switch (action.type) {
-    case UserActionTypes.LOG_IN_SUCCESS:
-      return {
-        ...state,
-        user: action.payload.user,
-        auth: true,
-      };
-      case UserActionTypes.LOG_IN_FAIL:
-        return {
-          ...state,
-          user: null,
-          auth: false,
-          error: {msg: "login failed"}
-        };
-    default:
-      return state;
-  }
+const initialState: UserfeedState = {
+    result: [],
+    isFetching: false,
+    isError: false,
+    isAuth: false
+};
+
+export default (state = initialState, action: AnyAction) => {
+    switch (action.type) {
+        case USER_FETCHING:
+            return { ...state, result: null, isFetching: true, isError: false, isAuth: false };
+        case USER_SUCCESS:
+            console.log("USER_SUCCESS >> "+action.payload);
+            return { ...state, isFetching: false, isError: false, result: action.payload, isAuth:true };
+        case USER_FAILED:
+            return { ...state, result: null, isFetching: false, isError: true, isAuth: false };
+
+        default:
+            return state;
+    }
 };

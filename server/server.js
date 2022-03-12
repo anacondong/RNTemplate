@@ -13,6 +13,10 @@ app.get('/login', (req, res) => {
   }
 })
 
+// ADD THIS
+var cors = require('cors');
+app.use(cors());
+
 app.listen(9000, () => {
   console.log('Application is running on port 9000')
 })
