@@ -10,12 +10,13 @@ import {
   Alert,
 } from "react-native";
 
-import stylesMain from '~styles/';
-import styles from "./LoginScreen.style";
+import stylesMain from '~/styles/';
+import styles from "~/styles/LoginScreen.style";
 
 import {useAppSelector} from '~/hooks/useAppSelector';
 import {useAppDispatch} from '~/hooks/useAppDispatch';
 import {AppDispatch} from '~/redux/stores';
+import { UserActionTypes } from '~/redux/types/UserTypes';
 
 const LoginScreen = ({ navigation: { navigate } }) => {
   // Redux
@@ -52,7 +53,14 @@ const LoginScreen = ({ navigation: { navigate } }) => {
   const LoginButton = () => (
     <TouchableOpacity
       style={[styles.loginButtonStyle]}
-      onPress={() => {console.log("set Auth == true")}}
+      onPress={() => {
+          console.log("set Auth == true")
+          dispatch({
+            type: UserActionTypes.LOG_IN,
+            payload: {username: "test", password: "test"}
+          })
+        }
+      }
     >
       <Text style={[styles.loginTextStyle]}>Login</Text>
     </TouchableOpacity>
@@ -62,7 +70,7 @@ const LoginScreen = ({ navigation: { navigate } }) => {
 
   return (
     <SafeAreaView style={[stylesMain.flex, {backgroundColor: colors.primary}]}>
-      
+      <Divider />
       <Logo />
       <Divider />
       <TextInputContainer />
